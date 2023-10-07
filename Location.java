@@ -50,7 +50,7 @@ public class Location {
     }
 
     public Item getItem(int index) {
-        if (index < numItems() - 1) {
+        if (index < numItems()) {
             return store.get(index);
         }
         return null;

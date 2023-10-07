@@ -20,6 +20,7 @@ public class Item {
   public void setType (String type) {this.type = type;}
   public void setDescription (String description) {this.description = description;}
 
+  @Override
   public String toString() {
     StringBuilder builder = new StringBuilder();
     builder.append(name);
