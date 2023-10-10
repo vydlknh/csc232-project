@@ -1,3 +1,10 @@
+/**
+ * The driver reads in commands from the user and output the corresponding message.
+ * @author Vy Do
+ * @author Phan Nguyen
+ * @author Audrey Bui
+ * @author Anh Nguyen
+ */
 import java.util.Scanner;
 
 public class Driver {
