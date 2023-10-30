@@ -4,12 +4,14 @@
  * @author Anh Nguyen
 */
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Location {
     // Member variables
     private String name;
     private String description;
     private ArrayList<Item> store;
+    private HashMap<String, Location> connections;
 
     // Constructor
     /**
@@ -21,8 +23,20 @@ public class Location {
         this.name = name;
         this.description = description;
         store = new ArrayList<Item>();
+        connections = new HashMap<>();
     }
 
+    public void connect(String direction, Location location) {
+        connections.put(direction, location);
+    }
+
+    public boolean canMove(String direction) {
+        return connections.containsKey(direction);
+    }
+
+    public Location getLocation(String direction) {
+        return connections.get(direction);
+    }
     /**
      * This method returns the name of the item
      * @return The name of the item
