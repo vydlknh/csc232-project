@@ -29,11 +29,13 @@ public class Item {
    * @return The name of the item
    */
   public String getName () {return name;}
+
   /**
    * This method returns the type of the item
    * @return The type of the item
    */
   public String getType () {return type;}
+
   /**
    * This method returns the description of the item
    * @return The description of the item
@@ -45,11 +47,13 @@ public class Item {
    * @param name The new name of the item
    */
   public void setName (String name) {this.name = name;}
+
   /**
    * This method set the type of the item
    * @param name The new type of the item
    */
   public void setType (String type) {this.type = type;}
+  
   /**
    * This method set the description of the item
    * @param name The new description of the item

@@ -2,6 +2,8 @@
  * The location class is used to encapsulate information about a location in the game
  * @author Audrey Bui
  * @author Anh Nguyen
+ * @author Vy Do
+ * @author Phan Nguyen
 */
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,17 +28,6 @@ public class Location {
         connections = new HashMap<>();
     }
 
-    public void connect(String direction, Location location) {
-        connections.put(direction, location);
-    }
-
-    public boolean canMove(String direction) {
-        return connections.containsKey(direction);
-    }
-
-    public Location getLocation(String direction) {
-        return connections.get(direction);
-    }
     /**
      * This method returns the name of the item
      * @return The name of the item
@@ -44,6 +35,7 @@ public class Location {
     public String getName() {
         return name;
     }
+
     /**
      * This method returns the description of the item
      * @return The description of the item
@@ -59,6 +51,7 @@ public class Location {
     public void setName(String name) {
         this.name = name;
     }
+
     /**
      * This method set the description of the item
      * @param name The new description of the item
@@ -134,5 +127,32 @@ public class Location {
         Item removedItem = getItem(itemName);
         store.remove(removedItem);
         return removedItem;
+    }
+
+    /**
+     * This method connects one location to another by adding its direction and name to the connections Hashmap 
+     * @param direction The direction of the location
+     * @param location The name of the location
+     */
+    public void connect(String direction, Location location) {
+        connections.put(direction, location);
+    }
+    
+    /**
+     * This method returns whether the user can move in a certain direction from a location
+     * @param direction The direction that the user wants to move to
+     * @return whether the user can move in that direction
+     */
+    public boolean canMove(String direction) {
+        return connections.containsKey(direction);
+    }
+    
+    /**
+     * This method returns the location at a certain direction
+     * @param direction The direction from a location
+     * @return the location at the direction
+     */
+    public Location getLocation(String direction) {
+        return connections.get(direction);
     }
 }
