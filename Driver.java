@@ -27,7 +27,7 @@ public class Driver {
     Bedroom.addItem(new Item("journal", "item", "a journal"));
     Garden.addItem(new Item("axe", "weapon", "an axe"));
     Garden.addItem(new Item("apple", "food", "an apple"));
-
+    
     Hallway.connect("north", Kitchen);
     Hallway.connect("east", Bedroom);
     Hallway.connect("south", Garden);
@@ -37,6 +37,16 @@ public class Driver {
     
     currLocation = Kitchen;
     myInventory = new ContainerItem("bag", "container", "just a regular bag");
+
+    ContainerItem chest = new ContainerItem("chest", "item", "a chest");
+    Hallway.addItem(chest);
+    chest.addItem(new Item("hammer", "weapon", "a hammer"));
+    chest.addItem(new Item("rope", "item", "a rope"));
+    
+    ContainerItem closet = new ContainerItem("closet", "item", "a closet");
+    Bedroom.addItem(closet);
+    closet.addItem(new Item("shirt", "item", "a shirt"));
+    closet.addItem(new Item("hanger", "weapon", "a hanger"));
   }
 
   public static void commandLines() {
@@ -108,9 +118,34 @@ public class Driver {
         case "take":
           if (commands.length == 1) {
             System.out.println("You did not tell me an item you want to take");
-          } else if (currLocation.hasItem(commands[1])) {
-            myInventory.addItem(currLocation.getItem(commands[1]));
-            currLocation.removeItem(commands[1]);
+          } else if (commands.length == 2) {
+            if (currLocation.hasItem(commands[1])) {
+              myInventory.addItem(currLocation.getItem(commands[1]));
+              currLocation.removeItem(commands[1]);
+            } else {
+              System.out.println("Cannot find that item here");
+            }
+          }
+          else if (commands.length == 4) {
+            if (!commands[2].equalsIgnoreCase("from")) {
+              System.out.println("Invalid command");
+            } else if (!currLocation.hasItem(commands[3])) {
+              System.out.println("Cannot find that item here");
+            } else {
+              ContainerItem container = (ContainerItem) currLocation.getItem(commands[3]);
+              myInventory.addItem(container.removeItem(commands[1]));
+            }
+          } else {
+            System.out.println("Invalid command");
+          }
+          break;
+        
+        case "put":
+          if (commands.length == 1) {
+            System.out.println("You did not tell me an item you want to put");
+          } else if (commands.length == 4 && currLocation.hasItem(commands[3]) && myInventory.hasItem(commands[1])) {
+            ContainerItem container = (ContainerItem) currLocation.getItem(commands[3]);
+            container.addItem(myInventory.removeItem(commands[1]));
           } else {
             System.out.println("Cannot find that item here");
           }
